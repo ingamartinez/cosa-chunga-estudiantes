@@ -15,5 +15,10 @@ class Estudiante extends Model
         return $this->hasOne('App\Model\Seguimiento');
     }
 
+    public function nota(){
+
+        return $this->hasOne('App\Model\Nota');
+    }
+
 
 }

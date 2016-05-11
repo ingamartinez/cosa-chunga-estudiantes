@@ -15,4 +15,9 @@ class Asignatura extends Model
 
         return $this->belongsTo('App\Model\Profesor','profesores_id');
     }
+
+    public function nota(){
+
+        return $this->hasOne('App\Model\Nota');
+    }
 }

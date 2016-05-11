@@ -24,3 +24,6 @@ Route::resource('seguimiento','SeguimientoController');
 Route::resource('profesor','ProfesorController');
 
 Route::resource('asignatura','AsignaturaController');
+
+
+Route::resource('nota','NotaController');
