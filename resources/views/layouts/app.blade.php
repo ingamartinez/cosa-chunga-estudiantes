@@ -43,8 +43,8 @@
                 <li><a href="{{URL::route('seguimiento.index')}}">Seguimientos</a></li>
                 <li><a href="{{URL::route('actividad.index')}}">Actividades</a></li>
                 <li><a href="#">Notas</a></li>
-                <li><a href="#">Asignaturas</a></li>
-                <li><a href="#">Profesores</a></li>
+                <li><a href="{{URL::route('asignatura.index')}}">Asignaturas</a></li>
+                <li><a href="{{URL::route('profesor.index')}}">Profesores</a></li>
 
             </ul>
 

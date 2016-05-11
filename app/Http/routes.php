@@ -20,3 +20,7 @@ Route::resource('estudiante','EstudianteController');
 Route::resource('actividad','ActividadController');
 
 Route::resource('seguimiento','SeguimientoController');
+
+Route::resource('profesor','ProfesorController');
+
+Route::resource('asignatura','AsignaturaController');
