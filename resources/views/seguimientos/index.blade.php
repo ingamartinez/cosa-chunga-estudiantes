@@ -29,26 +29,26 @@
                                 </tr>
                                 </thead>
 
-                                <tbody>
-                                @forelse($seguimientos as $seguimiento)
-                                    <tr data-id="{{$seguimiento->id}}">
-                                        <td>{{$seguimiento->estudiante->nombre}}</td>
-                                        <td>{{$seguimiento->actividad->nombre}}</td>
-                                        <td>{{$seguimiento->created_at}}</td>
-                                        <td>
-                                            <a class="editar-seguimiento" href="#">Editar</a>
-                                            <a class="eliminar-seguimiento" href="#">Eliminar</a>
-                                        </td>
+                                {{--<tbody>--}}
+                                {{--@forelse($seguimientos as $seguimiento)--}}
+                                    {{--<tr data-id="{{$seguimiento->id}}">--}}
+                                        {{--<td>{{$seguimiento->estudiante->nombre}}</td>--}}
+                                        {{--<td>{{$seguimiento->actividad->nombre}}</td>--}}
+                                        {{--<td>{{$seguimiento->created_at}}</td>--}}
+                                        {{--<td>--}}
+                                            {{--<a class="editar-seguimiento" href="#">Editar</a>--}}
+                                            {{--<a class="eliminar-seguimiento" href="#">Eliminar</a>--}}
+                                        {{--</td>--}}
 
-                                    </tr>
-                                @empty
-                                    <div class="alert alert-dismissable alert-warning">
-                                        <button type="button" class="close" data-dismiss="alert">×</button>
-                                        <h4>Mensaje del sistema!</h4>
-                                        <p>No se encuentran registros.</p>
-                                    </div>
-                                @endforelse
-                                </tbody>
+                                    {{--</tr>--}}
+                                {{--@empty--}}
+                                    {{--<div class="alert alert-dismissable alert-warning">--}}
+                                        {{--<button type="button" class="close" data-dismiss="alert">×</button>--}}
+                                        {{--<h4>Mensaje del sistema!</h4>--}}
+                                        {{--<p>No se encuentran registros.</p>--}}
+                                    {{--</div>--}}
+                                {{--@endforelse--}}
+                                {{--</tbody>--}}
                             </table>
                         </div>
                     </div>
@@ -61,14 +61,32 @@
 @section('script')
     <script>
         $(document).ready(function () {
-            $('#example').DataTable({
+            var table=$('#example').DataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/a5734b29083/i18n/Spanish.json"
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: 'seguimiento',
+                success: function (data) {
+                    for (var rowTable in data) {
+                        console.log(data);
+                        table.row.add( [
+                            data[rowTable].estudiantes_nombre,
+                            data[rowTable].actividades_nombre,
+                            data[rowTable].created_at,
+                            '<a class="editar-seguimiento" href="#">Editar</a> '+
+                            '<a class="eliminar-seguimiento" href="#">Eliminar</a>',
+                        ] ).draw().nodes().to$().attr('data-id',data[rowTable].ide);
+                    }
+
                 }
             });
         });
 
         $('.editar-seguimiento').on('click', function (e) {
+            alert(':v');
             e.preventDefault();
             var fila = $(this).parents('tr');
             var id = fila.data('id');

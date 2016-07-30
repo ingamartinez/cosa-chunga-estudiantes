@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Redirect;
 use Response;
+use DB;
 
 class SeguimientoController extends Controller
 {
@@ -18,14 +19,27 @@ class SeguimientoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $seguimientos = Seguimiento::all();
 
-        $estudiantes = Estudiante::all();
-        $actividades = Actividad::all();
 
-        return view('seguimientos.index',compact('seguimientos','estudiantes','actividades'));
+        if ($request->ajax()){
+            $seguimientosJSON = DB::table('seguimientos')
+                ->join('estudiantes', 'seguimientos.estudiantes_id', '=', 'estudiantes.id')
+                ->join('actividades', 'seguimientos.actividades_id', '=', 'actividades.id')
+                ->select('estudiantes.nombre as estudiantes_nombre',
+                    'actividades.nombre as actividades_nombre',
+                    'seguimientos.created_at',
+                    'seguimientos.id as ide')
+                ->get();
+
+            return Response::json($seguimientosJSON);
+        }else{
+            $seguimientos = Seguimiento::all();
+            $estudiantes = Estudiante::all();
+            $actividades = Actividad::all();
+            return view('seguimientos.index',compact('seguimientos','estudiantes','actividades'));
+        }
     }
 
     /**

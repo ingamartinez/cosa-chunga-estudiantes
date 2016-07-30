@@ -42,7 +42,7 @@
                 <li><a href="{{URL::route('estudiante.index')}}">Estudiantes</a></li>
                 <li><a href="{{URL::route('seguimiento.index')}}">Seguimientos</a></li>
                 <li><a href="{{URL::route('actividad.index')}}">Actividades</a></li>
-                <li><a href="#">Notas</a></li>
+                <li><a href="{{URL::route('nota.index')}}">Notas</a></li>
                 <li><a href="{{URL::route('asignatura.index')}}">Asignaturas</a></li>
                 <li><a href="{{URL::route('profesor.index')}}">Profesores</a></li>
 
@@ -60,7 +60,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="https://cdn.datatables.net/t/bs/dt-1.10.11/datatables.min.js"></script>
-<script type="text/javascript" src="/js/sweetalert2.min.js"></script>
+{{--<script type="text/javascript" src="/js/sweetalert2.min.js"></script>--}}
 <script type="text/javascript" src="http://malsup.github.io/jquery.blockUI.js"></script>
 @yield('script')
 
