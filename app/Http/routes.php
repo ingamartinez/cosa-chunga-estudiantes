@@ -27,3 +27,9 @@ Route::resource('asignatura','AsignaturaController');
 
 
 Route::resource('nota','NotaController');
+
+Route::group(['domain' => '{account}.myapp.com'], function () {
+    Route::get('user/{id}', function ($account, $id) {
+        return dd($account,$id);
+    });
+});
